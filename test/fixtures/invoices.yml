@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  customer_id: 1
+  merchant_id: 1
+  status: MyString
+  created_at: 2015-07-27 14:06:40
+  updated_at: 2015-07-27 14:06:40
+
+two:
+  customer_id: 1
+  merchant_id: 1
+  status: MyString
+  created_at: 2015-07-27 14:06:40
+  updated_at: 2015-07-27 14:06:40
