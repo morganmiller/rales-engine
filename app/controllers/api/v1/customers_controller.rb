@@ -2,11 +2,7 @@ class Api::V1::CustomersController < ApplicationController
   respond_to :json
 
   def index
-    if params[:customers]
-      respond_with params[:customers]
-    else
-      respond_with Customer.all
-    end
+    respond_with Customer.all
   end
 
   def show
