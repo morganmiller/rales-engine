@@ -17,6 +17,10 @@ class Api::V1::CustomersController < ApplicationController
     render json: Customer.where(find_params)
   end
 
+  def random
+    respond_with Customer.limit(1).order("RANDOM()")
+  end
+
 private
 
   def find_params
