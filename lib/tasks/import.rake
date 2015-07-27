@@ -3,7 +3,7 @@ require 'csv'
 def import_data(model_files)
   model_files.each do |model, filename|
     CSV.foreach("lib/assets/#{filename}", :headers => true) do |row|
-      model.create!(row.to_hash)
+      model.find_or_create_by(row.to_hash)
     end
   end
 end
