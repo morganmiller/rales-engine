@@ -3,6 +3,16 @@ class Item < ActiveRecord::Base
 
   belongs_to :merchant
   has_many :invoice_items
+  has_many :invoices, through: :invoice_items
+  has_many :transactions, through: :invoices
+
+  def self.most_revenue(num_items)
+    Item.all.sort_by { |item| -item.revenue }.take(num_items.to_i)
+  end
+
+  def revenue
+    invoices.successful.includes(:invoice_items).sum('"invoice_items"."quantity" * "invoice_items"."unit_price"')
+  end
 
 private
 
