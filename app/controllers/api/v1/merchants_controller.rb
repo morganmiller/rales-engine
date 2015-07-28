@@ -21,6 +21,10 @@ class Api::V1::MerchantsController < ApplicationController
     respond_with Merchant.limit(1).order("RANDOM()")
   end
 
+  # def most_revenue
+  #   Merchant.limit(params[:quantity].to_i).most_revenue
+  # end
+
   private
 
   def find_params
