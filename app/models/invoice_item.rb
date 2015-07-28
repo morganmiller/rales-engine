@@ -3,12 +3,10 @@ class InvoiceItem < ActiveRecord::Base
 
   belongs_to :item
   belongs_to :invoice
-  #add before action for total_price
-  #change all prices to decimal on DB?
 
-  def total_cost
-    unit_price * quantity
-  end
+  # def total_cost
+  #   unit_price * quantity
+  # end
 
 private
 
