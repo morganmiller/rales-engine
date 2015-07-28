@@ -19,23 +19,23 @@ Rails.application.routes.draw do
       get '/items/random', to: 'items#random'
       resources :items, except: [:edit, :new] do
         get '/invoice_items', to: "items/invoice_items#index"
-        get '/merchant', to: "items/merchants#index"
+        get '/merchant', to: "items/merchants#show"
       end
 
       get '/invoice_items/find', to: 'invoice_items#find'
       get '/invoice_items/find_all', to: 'invoice_items#find_all'
       get '/invoice_items/random', to: 'invoice_items#random'
       resources :invoice_items, except: [:edit, :new] do
-        get '/invoice', to: 'invoice_items/invoices#index'
-        get '/item',    to: 'invoice_items/items#index'
+        get '/invoice', to: 'invoice_items/invoices#show'
+        get '/item',    to: 'invoice_items/items#show'
       end
 
       get '/invoices/find', to: 'invoices#find'
       get '/invoices/find_all', to: 'invoices#find_all'
       get '/invoices/random', to: 'invoices#random'
       resources :invoices, except: [:edit, :new] do
-        get '/customer',      to: "invoices/customers#index"
-        get '/merchant',      to: "invoices/merchants#index"
+        get '/customer',      to: "invoices/customers#show"
+        get '/merchant',      to: "invoices/merchants#show"
         get '/items',         to: "invoices/items#index"
         get '/invoice_items', to: "invoices/invoice_items#index"
         get '/transactions',  to: "invoices/transactions#index"
