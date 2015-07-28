@@ -25,6 +25,10 @@ class Api::V1::MerchantsController < ApplicationController
     render json: Merchant.most_revenue(params[:quantity])
   end
 
+  def most_items
+    render json: Merchant.most_items(params[:quantity])
+  end
+
   def show_revenue
     ##Something needs to go here to account for whether a date is being passed in, what format?
     merchant = Merchant.find_by(id: params[:id])
