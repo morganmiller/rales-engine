@@ -5,9 +5,5 @@ class Invoice < ActiveRecord::Base
   has_many :invoice_items
 
   has_many :items, through: :invoice_items
-  scope :successful, -> { where(self.transactions.successful) }
-
-  def successful_invoices
-    self.transactions.successful
-  end
+  scope :successful, -> { includes(:transactions).where(transactions: {result: "success"}) }
 end
