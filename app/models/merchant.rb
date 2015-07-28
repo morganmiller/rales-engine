@@ -22,10 +22,18 @@ class Merchant < ActiveRecord::Base
     end
   end
 
+  def customers_with_pending_invoices
+    pending_invoices.map { |i| i.customer }
+  end
+
   # At some point make a query like this for the date stuff revenue thingy:
   # Merchant.where(updated_at.to_s.include?("27 Mar 2012"))
+  ####merge?
 
 private
+  def pending_invoices
+    invoices - invoices.successful
+  end
 
   def items_sold
     invoices.successful.joins(:invoice_items).sum("quantity")

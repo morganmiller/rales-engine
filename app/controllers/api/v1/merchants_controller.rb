@@ -40,6 +40,11 @@ class Api::V1::MerchantsController < ApplicationController
     render json: merchant.favorite_customer
   end
 
+  def customers_with_pending_invoices
+    merchant = Merchant.find_by(id: params[:id])
+    render json: merchant.customers_with_pending_invoices
+  end
+
   private
 
   def find_params

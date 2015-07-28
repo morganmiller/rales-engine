@@ -1,3 +1,4 @@
+#look at merge
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
@@ -16,8 +17,9 @@ Rails.application.routes.draw do
       get '/merchants/most_revenue', to: 'merchants#most_revenue'
       get '/merchants/most_items',   to: 'merchants#most_items'
 
-      get '/merchants/:id/revenue',            to: 'merchants#show_revenue'
-      get '/merchants/:id/favorite_customer',  to: 'merchants#favorite_customer'
+      get '/merchants/:id/revenue',                          to: 'merchants#show_revenue'
+      get '/merchants/:id/favorite_customer',                to: 'merchants#favorite_customer'
+      get '/merchants/:id/customers_with_pending_invoices',  to: 'merchants#customers_with_pending_invoices'
 
       resources :merchants, except: [:edit, :new] do
         get '/items',    to: "merchants/items#index"
