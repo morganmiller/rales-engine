@@ -18,8 +18,8 @@ class InvoiceItemTest < ActiveSupport::TestCase
   end
 
   test "it knows its total cost" do
-    i = InvoiceItem.create(unit_price: 300, quantity: 2)
+    i = InvoiceItem.create(unit_price: 30000, quantity: 2)
 
-    assert_equal 600, i.total_cost
+    assert_equal 600.00, i.total_cost.to_i
   end
 end
