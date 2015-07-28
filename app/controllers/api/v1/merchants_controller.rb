@@ -25,6 +25,11 @@ class Api::V1::MerchantsController < ApplicationController
   #   Merchant.limit(params[:quantity].to_i).most_revenue
   # end
 
+  def show_revenue
+    merchant = Merchant.find_by(id: params[:id])
+    render json: merchant.revenue
+  end
+
   private
 
   def find_params
