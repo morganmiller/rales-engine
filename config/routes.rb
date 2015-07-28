@@ -41,7 +41,9 @@ Rails.application.routes.draw do
         get '/transactions',  to: "invoices/transactions#index"
       end
 
-      resources :transactions, except: [:edit, :new]
+      resources :transactions, except: [:edit, :new] do
+        get '/invoice', to: "transactions/invoices#show"
+      end
     end
   end
 end
