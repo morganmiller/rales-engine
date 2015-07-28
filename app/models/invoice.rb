@@ -7,6 +7,8 @@ class Invoice < ActiveRecord::Base
   has_many :items, through: :invoice_items
   scope :successful, -> { includes(:transactions).where(transactions: {result: "success"}) }
 
+  #possibly add total cost to invoice, so can sue pluck to make queries faster
+
   def total_cost
     invoice_items.map(&:total_cost).sum
   end
