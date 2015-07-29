@@ -10,11 +10,11 @@ class Api::V1::InvoiceItemsController < ApplicationController
   end
 
   def find
-    render json: InvoiceItem.find_by(find_params)
+    respond_with InvoiceItem.find_by(find_params)
   end
 
   def find_all
-    render json: InvoiceItem.where(find_params)
+    respond_with InvoiceItem.where(find_params)
   end
 
   def random

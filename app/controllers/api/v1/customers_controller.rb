@@ -10,11 +10,11 @@ class Api::V1::CustomersController < ApplicationController
   end
 
   def find
-    render json: Customer.find_by(find_params)
+    respond_with Customer.find_by(find_params)
   end
 
   def find_all
-    render json: Customer.where(find_params)
+    respond_with Customer.where(find_params)
   end
 
   def random
@@ -23,7 +23,7 @@ class Api::V1::CustomersController < ApplicationController
 
   def favorite_merchant
     customer = Customer.find_by(id: params[:id])
-    render json: customer.favorite_merchant
+    respond_with customer.favorite_merchant
   end
 private
 

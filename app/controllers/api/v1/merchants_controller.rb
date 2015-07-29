@@ -10,11 +10,11 @@ class Api::V1::MerchantsController < ApplicationController
   end
 
   def find
-    render json: Merchant.find_by(find_params)
+    respond_with Merchant.find_by(find_params)
   end
 
   def find_all
-    render json: Merchant.where(find_params)
+    respond_with Merchant.where(find_params)
   end
 
   def random
@@ -22,30 +22,30 @@ class Api::V1::MerchantsController < ApplicationController
   end
 
   def most_revenue
-    render json: Merchant.most_revenue(params[:quantity])
+    respond_with Merchant.most_revenue(params[:quantity])
   end
 
   def revenue
-    render json: Merchant.revenue(params[:date])
+    respond_with Merchant.revenue(params[:date])
   end
 
   def most_items
-    render json: Merchant.most_items(params[:quantity])
+    respond_with Merchant.most_items(params[:quantity])
   end
 
   def show_revenue
     merchant = Merchant.find_by(id: params[:id])
-    render json: merchant.revenue(params[:date])
+    respond_with merchant.revenue(params[:date])
   end
 
   def favorite_customer
     merchant = Merchant.find_by(id: params[:id])
-    render json: merchant.favorite_customer
+    respond_with merchant.favorite_customer
   end
 
   def customers_with_pending_invoices
     merchant = Merchant.find_by(id: params[:id])
-    render json: merchant.customers_with_pending_invoices
+    respond_with merchant.customers_with_pending_invoices
   end
 
   private

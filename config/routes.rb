@@ -1,6 +1,6 @@
 #look at merge
 Rails.application.routes.draw do
-  namespace :api do
+  namespace :api, defaults: {format: 'json'} do
     namespace :v1 do
       get '/customers/find',     to: 'customers#find'
       get '/customers/find_all', to: 'customers#find_all'
