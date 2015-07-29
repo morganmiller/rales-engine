@@ -2,7 +2,7 @@ require 'csv'
 
 def import_data(model_files)
   model_files.each do |model, filename|
-    CSV.foreach("lib/assets/#{filename}", :headers => true) do |row|
+    CSV.foreach("lib/assets/#{filename}", headers: true) do |row|
       model.find_or_create_by(row.to_hash)
     end
   end
@@ -14,6 +14,8 @@ task :import, [:csvs] => :environment do
                [InvoiceItem, "invoice_items.csv"],
                [Invoice, "invoices.csv"],
                [Item, "items.csv"],
-               [Merchant, "merchants.csv"],
-               [Transaction, "transactions.csv"]])
+               [Merchant, "merchants.csv"]])
+  CSV.read("lib/assets/transactions.csv", headers: true).each do |row|
+    Transaction.create!(row.to_h.except("credit_card_expiration_date"))
+  end
 end
