@@ -8,12 +8,20 @@ class Merchant < ActiveRecord::Base
     Merchant.all.sort_by { |merchant| -merchant.revenue }.take(num_merchants.to_i)
   end
 
+  def self.revenue(date)
+    Merchant.all.sort_by { |merchant| -merchant.revenue(date) }
+  end
+
   def self.most_items(num_merchants)
     Merchant.all.sort_by { |merchant| -merchant.items_sold }.take(num_merchants.to_i)
   end
 
   def revenue(date = nil)
-    invoices.successful.joins(:invoice_items).sum("quantity * unit_price")
+    if date
+      invoices.successful.where(created_at: date).joins(:invoice_items).sum("quantity * unit_price")
+    else
+      invoices.successful.joins(:invoice_items).sum("quantity * unit_price")
+    end
   end
 
   def favorite_customer
@@ -26,11 +34,8 @@ class Merchant < ActiveRecord::Base
     pending_invoices.map { |i| i.customer }
   end
 
-  # At some point make a query like this for the date stuff revenue thingy:
-  # Merchant.where(updated_at.to_s.include?("27 Mar 2012"))
-  ####merge?
-
 private
+
   def pending_invoices
     invoices - invoices.successful
   end

@@ -29,6 +29,11 @@ class Api::V1::ItemsController < ApplicationController
     render json: Item.most_items(params[:quantity])
   end
 
+  def best_day
+    item = Item.find_by(id: params[:id])
+    render json: item.best_day
+  end
+
   private
 
   def find_params

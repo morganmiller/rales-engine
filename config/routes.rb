@@ -18,6 +18,7 @@ Rails.application.routes.draw do
       get '/merchants/random',       to: 'merchants#random'
       get '/merchants/most_revenue', to: 'merchants#most_revenue'
       get '/merchants/most_items',   to: 'merchants#most_items'
+      get '/merchants/revenue',      to: 'merchants#revenue'
 
       get '/merchants/:id/revenue',                          to: 'merchants#show_revenue'
       get '/merchants/:id/favorite_customer',                to: 'merchants#favorite_customer'
@@ -34,6 +35,7 @@ Rails.application.routes.draw do
 
       get '/items/most_revenue', to: 'items#most_revenue'
       get '/items/most_items',   to: 'items#most_items'
+      get '/items/:id/best_day', to: 'items#best_day'
 
       resources :items, except: [:edit, :new] do
         get '/invoice_items', to: "items/invoice_items#index"

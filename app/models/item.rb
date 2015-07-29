@@ -20,6 +20,11 @@ class Item < ActiveRecord::Base
         .map { |name, _| Item.find_by(name: name)}
   end
 
+  def best_day
+    day = invoices.successful.group_by { |i| i.created_at }.max_by {|k, v| v.count}.first
+    {"best_day" => day}
+  end
+
   def revenue
     invoices.successful.includes(:invoice_items).sum('"invoice_items"."quantity" * "invoice_items"."unit_price"')
   end
