@@ -21,6 +21,14 @@ class Api::V1::ItemsController < ApplicationController
     respond_with Item.limit(1).order("RANDOM()")
   end
 
+  def most_revenue
+    render json: Item.most_revenue(params[:quantity])
+  end
+
+  def most_items
+    render json: Item.most_items(params[:quantity])
+  end
+
   private
 
   def find_params

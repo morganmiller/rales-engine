@@ -10,6 +10,16 @@ class Item < ActiveRecord::Base
     Item.all.sort_by { |item| -item.revenue }.take(num_items.to_i)
   end
 
+  def self.most_items(num_items)
+    Item.joins(:invoices)
+        .merge(Invoice.successful)
+        .group(:name)
+        .sum('"invoice_items"."quantity"')
+        .sort_by(&:last)
+        .last(num_items.to_i)
+        .map { |name, _| Item.find_by(name: name)}
+  end
+
   def revenue
     invoices.successful.includes(:invoice_items).sum('"invoice_items"."quantity" * "invoice_items"."unit_price"')
   end
