@@ -16,14 +16,15 @@ describe Api::V1::ItemsController do
 
   context '#show' do
     it 'returns the requested item' do
-      i = Item.first
+      i = Item.create(name: "item", unit_price: 30000)
 
       get :show, id: i.id, format: :json
 
       expect(response).to have_http_status(:ok)
 
       item = JSON.parse(response.body)
-      expect(item['name']).to eq('Black Hat')
+      expect(item['name']).to eq('item')
+      expect(item['unit_price']).to eq("300.0")
     end
   end
 
