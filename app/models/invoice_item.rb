@@ -4,9 +4,9 @@ class InvoiceItem < ActiveRecord::Base
   belongs_to :item
   belongs_to :invoice
 
-  # def total_cost
-  #   unit_price * quantity
-  # end
+  def self.random
+    all.limit(1).order("RANDOM()")
+  end
 
 private
 

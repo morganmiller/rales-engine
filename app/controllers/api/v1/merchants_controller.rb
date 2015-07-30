@@ -18,7 +18,7 @@ class Api::V1::MerchantsController < ApplicationController
   end
 
   def random
-    respond_with Merchant.limit(1).order("RANDOM()")
+    respond_with Merchant.random
   end
 
   def most_revenue

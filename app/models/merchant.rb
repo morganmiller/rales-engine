@@ -16,6 +16,10 @@ class Merchant < ActiveRecord::Base
     Merchant.all.max_by(num_merchants.to_i) { |merchant| merchant.items_sold }
   end
 
+  def self.random
+    all.limit(1).order("RANDOM()")
+  end
+
   def revenue(date = nil)
     if date
       invoices.successful.where(created_at: date).joins(:invoice_items).sum("quantity * unit_price")

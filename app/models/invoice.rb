@@ -6,4 +6,8 @@ class Invoice < ActiveRecord::Base
   has_many   :items, through: :invoice_items
 
   scope :successful, -> { includes(:transactions).where(transactions: {result: "success"}) }
+
+  def self.random
+    all.limit(1).order("RANDOM()")
+  end
 end

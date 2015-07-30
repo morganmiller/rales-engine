@@ -8,4 +8,8 @@ class Customer < ActiveRecord::Base
       m.invoices.successful.where(customer_id: self.id).count
     end
   end
+
+  def self.random
+    all.limit(1).order("RANDOM()")
+  end
 end

@@ -20,6 +20,10 @@ class Item < ActiveRecord::Base
         .map { |name, _| Item.find_by(name: name)}
   end
 
+  def self.random
+    all.limit(1).order("RANDOM()")
+  end
+
   def best_day
     invoices.successful.group_by { |i| i.created_at }.max_by {|k, v| v.count}.first
   end

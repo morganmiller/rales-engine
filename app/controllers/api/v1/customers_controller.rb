@@ -18,7 +18,7 @@ class Api::V1::CustomersController < ApplicationController
   end
 
   def random
-    respond_with Customer.limit(1).order("RANDOM()")
+    respond_with Customer.random
   end
 
   def favorite_merchant
