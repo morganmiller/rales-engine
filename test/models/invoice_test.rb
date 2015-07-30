@@ -43,4 +43,10 @@ class InvoiceTest < ActiveSupport::TestCase
     assert_equal 3, Invoice.all.count
     assert_equal 2, Invoice.successful.count
   end
+
+  test "it finds a random invoice" do
+    result = Invoice.random.first
+
+    assert_instance_of Invoice, result
+  end
 end

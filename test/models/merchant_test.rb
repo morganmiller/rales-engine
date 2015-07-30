@@ -78,4 +78,10 @@ class MerchantTest < ActiveSupport::TestCase
 
     assert_equal 2, result.first.id
   end
+
+  test "it finds a random merchant" do
+    result = Merchant.random.first
+
+    assert_instance_of Merchant, result
+  end
 end

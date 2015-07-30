@@ -16,4 +16,10 @@ class InvoiceItemTest < ActiveSupport::TestCase
     i.invoice_items << ii
     assert_equal i, ii.invoice
   end
+
+  test "it finds a random invoice item" do
+    result = InvoiceItem.random.first
+
+    assert_instance_of InvoiceItem, result
+  end
 end

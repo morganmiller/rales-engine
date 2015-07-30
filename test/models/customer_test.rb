@@ -17,4 +17,10 @@ class CustomerTest < ActiveSupport::TestCase
 
     assert_equal 1, result.id
   end
+
+  test "it finds a random customer" do
+    result = Customer.random.first
+
+    assert_instance_of Customer, result
+  end
 end

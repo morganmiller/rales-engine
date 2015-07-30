@@ -44,4 +44,10 @@ class ItemTest < ActiveSupport::TestCase
 
     assert_equal 300.00, i.unit_price
   end
+
+  test "it finds a random item" do
+    result = Item.random.first
+
+    assert_instance_of Item, result
+  end
 end
