@@ -24,6 +24,6 @@ class TransactionTest < ActiveSupport::TestCase
     t2 = Transaction.create(result: "failed")
 
     assert Transaction.all.count > 1
-    assert_equal 1, Transaction.successful.count
+    assert_equal 3, Transaction.successful.count
   end
 end

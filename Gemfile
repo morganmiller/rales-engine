@@ -21,5 +21,6 @@ group :development, :test do
   gem 'spring'
   gem 'simplecov'
   gem 'mrspec'
+  gem 'rspec-rails'
 end
 

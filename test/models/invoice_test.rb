@@ -35,24 +35,12 @@ class InvoiceTest < ActiveSupport::TestCase
 
   test "it has many items" do
     invoice = Invoice.first
-    ii = InvoiceItem.first
-    item = Item.first
 
-    ii.item = item
-    invoice.invoice_items << ii
     assert_equal 1, invoice.items.count
   end
 
   test "it scopes for associated successful transactions" do
-    t1 = Transaction.create(result: "success")
-    t2 = Transaction.create(result: "failed")
-
-    i1 = Invoice.first
-    i2 = Invoice.last
-    i1.transactions << t1
-    i2.transactions << t2
-
-    assert_equal 2, Invoice.all.count
-    assert_equal 1, Invoice.successful.count
+    assert_equal 3, Invoice.all.count
+    assert_equal 2, Invoice.successful.count
   end
 end

@@ -21,8 +21,7 @@ class Item < ActiveRecord::Base
   end
 
   def best_day
-    day = invoices.successful.group_by { |i| i.created_at }.max_by {|k, v| v.count}.first
-    {"best_day" => day}
+    invoices.successful.group_by { |i| i.created_at }.max_by {|k, v| v.count}.first
   end
 
   def revenue

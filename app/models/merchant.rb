@@ -9,11 +9,11 @@ class Merchant < ActiveRecord::Base
   end
 
   def self.revenue(date)
-    Merchant.all.sort_by { |merchant| -merchant.revenue(date) }
+    Merchant.all.map { |merchant| merchant.revenue(date) }.reduce(:+)
   end
 
   def self.most_items(num_merchants)
-    Merchant.all.sort_by { |merchant| -merchant.items_sold }.take(num_merchants.to_i)
+    Merchant.all.max_by(num_merchants.to_i) { |merchant| merchant.items_sold }
   end
 
   def revenue(date = nil)
@@ -34,13 +34,13 @@ class Merchant < ActiveRecord::Base
     pending_invoices.map { |i| i.customer }
   end
 
+  def items_sold
+    invoices.successful.joins(:invoice_items).sum(:quantity)
+  end
+
 private
 
   def pending_invoices
     invoices - invoices.successful
-  end
-
-  def items_sold
-    invoices.successful.joins(:invoice_items).sum("quantity")
   end
 end
